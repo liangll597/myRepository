@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pandawork.mapper.person.PersonMapper">
+
+    <resultMap id="person" type="com.pandawork.common.entity.person.Person" >
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="sex" column="sex"/>
+    </resultMap>
+
+    <select id="listAllPerson" resultMap="person">
+        SELECT *
+        FROM `t_person`
+    </select>
+
+    <insert id="addPerson">
+        INSERT INTO `t_person`
+        (`name`,`age`, `sex`)
+        VALUES (#{person.name}, #{person.age}, #{person.sex})
+    </insert>
+
+    <delete id="delPerson">
+        DELETE FROM `t_person`
+        WHERE `id` = #{id}
+    </delete>
+
+    <update id="updatePerson">
+        UPDATE `t_person`
+        SET `name` = #{person.name},
+            `age` = #{person.age},
+            `sex` = #{person.sex}
+        WHERE `id` = #{person.id}
+    </update>
+
+    <select id="selectById" resultMap="person" >
+        SELECT *
+        FROM `t_person`
+        WHERE `id` = #{id}
+    </select>
+
+    <select id="select" resultMap="person">
+        SELECT *
+        FROM `t_person`
+        WHERE `name` LIKE '%${keyword}%'
+        OR `age` LIKE '%${keyword}%' OR `sex` LIKE '%${keyword}%'
+    </select>
+</mapper>
