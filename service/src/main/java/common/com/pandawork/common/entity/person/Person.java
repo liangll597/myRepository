@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 /**
- * @Author:liangll
+ * @Author:lianglllianglili
  * @Description: person实体
  * @Date: 15:39 2018/7/28
  */
